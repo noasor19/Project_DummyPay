@@ -34,13 +34,8 @@ jobs:
       - name: Install Chromium
         run: python -m playwright install --with-deps chromium
 
-      - name: Run smoke tests
-        if: github.event_name == 'pull_request'
-        run: python -m pytest -m smoke
-
-      - name: Run regression tests
-        if: github.event_name != 'pull_request'
-        run: python -m pytest -m regression
+      - name: Run all tests
+        run: python -m pytest
 
       - name: Upload report and failure evidence
         if: always()
