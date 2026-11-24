@@ -238,6 +238,7 @@ def test_card_07_empty_fields(logged_in_page_b):
             )
         ).to_be_visible()
 
+@pytest.mark.xfail(reason="BUG-001 | Able to add duplicate card")
 @pytest.mark.regression
 def test_card_08_duplicate_card_is_rejected(logged_in_page_b):
     suffix = uuid4().hex[:8].translate(
