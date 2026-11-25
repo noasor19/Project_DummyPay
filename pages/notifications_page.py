@@ -1,3 +1,4 @@
+import re
 from playwright.sync_api import Page
 
 from pages.base_page import BasePage
@@ -15,6 +16,10 @@ class NotificationsPage(BasePage):
             "button", name="Mark all as read", exact=True
         )
         self.notifications = page.get_by_test_id("notification-item")
+
+        self.unread_tab = page.get_by_role(
+        "radio", name=re.compile(r"^Unread")
+        )
 
     def open(self):
         super().open("/notifications")

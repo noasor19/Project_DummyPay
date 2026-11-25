@@ -52,3 +52,8 @@ INVALID_BANK_ACCOUNT_LENGTH_MESSAGE = (
 INVALID_DISPLAY_NAME_MESSAGE = (
     "Display name must be at least 2 characters."
 )
+
+INVALID_HISTORY_DATE = "20266-11-25"
+HISTORY_LOAD_ERROR_MESSAGE = (
+    "We couldn't load your transactions. Please refresh the page."
+)
