@@ -23,4 +23,4 @@ class DashboardPage(BasePage):
 
     def sign_out(self):
         self.account_menu_button.click()
-        self.sign_out_button.click()
+        self.sign_out_button.press("Enter")
