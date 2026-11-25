@@ -33,3 +33,16 @@ def logged_in_page_b(page: Page):
 @pytest.fixture
 def logged_in_page_a(page: Page):
     return login_as(page, USER_A_EMAIL, USER_A_PASSWORD)
+
+@pytest.fixture
+def logged_in_users(new_context):
+    context_a = new_context()
+    context_b = new_context()
+
+    page_a = context_a.new_page()
+    page_b = context_b.new_page()
+
+    login_as(page_a, USER_A_EMAIL, USER_A_PASSWORD)
+    login_as(page_b, USER_B_EMAIL, USER_B_PASSWORD)
+
+    return page_a, page_b
