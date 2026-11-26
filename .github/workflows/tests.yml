@@ -18,6 +18,8 @@ jobs:
       USER_A_PASSWORD: ${{ secrets.USER_A_PASSWORD }}
       USER_B_EMAIL: ${{ secrets.USER_B_EMAIL }}
       USER_B_PASSWORD: ${{ secrets.USER_B_PASSWORD }}
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
 
     steps:
       - name: Check out repository
