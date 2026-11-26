@@ -20,7 +20,7 @@ class DashboardPage(BasePage):
 
     def go_to(self, page_name: str):
         self.menu.get_by_role(
-            "link", name=page_name, exact=True
+        "link", name=page_name
         ).click()
 
     def sign_out(self):
