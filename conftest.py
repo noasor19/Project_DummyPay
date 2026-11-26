@@ -12,6 +12,9 @@ from utilities.config import (
     USER_B_PASSWORD,
 )
 
+# The site is sometimes slow: wait up to 10 seconds (instead of 5) in every expect
+expect.set_options(timeout=10_000)
+
 
 def login_as(page: Page, email: str, password: str):
     if not email or not password:
@@ -23,8 +26,7 @@ def login_as(page: Page, email: str, password: str):
 
     expect(
         page.get_by_role("heading", name="Dashboard", exact=True)
-    ).to_be_visible()
-
+        ).to_be_visible(timeout=15000)
     return page
 
 

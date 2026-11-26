@@ -17,7 +17,10 @@ def test_notif_01_payment_received(logged_in_users):
 
     # מוודאים שהרשימה הקיימת נטענה
     expect(notifications_page.notifications.first).to_be_visible()
-    count_before = notifications_page.notifications.count()
+    if notifications_page.mark_all_read_button.is_enabled():
+         notifications_page.mark_all_read_button.click()
+    unread = page_b.locator('[data-testid="notification-item"][data-read="false"]')
+    expect(unread).to_have_count(0)
 
     send_page = SendMoneyPage(page_a)
     started_at = datetime.now(timezone.utc).replace(
@@ -33,9 +36,8 @@ def test_notif_01_payment_received(logged_in_users):
     received_amount = send_page.get_received_amount()
     notifications_page.open()
 
-    expect(notifications_page.notifications).to_have_count(
-        count_before + 1
-    )
+    expect(unread).to_have_count(1)
+   
 
     new_notification = notifications_page.notifications.first
 
@@ -64,7 +66,11 @@ def test_notif_02_mark_notification_as_read(logged_in_users):
     notifications_page.open()
 
     expect(notifications_page.notifications.first).to_be_visible()
-    count_before = notifications_page.notifications.count()
+    if notifications_page.mark_all_read_button.is_enabled():
+         notifications_page.mark_all_read_button.click()
+    unread = page_b.locator('[data-testid="notification-item"][data-read="false"]')
+    expect(unread).to_have_count(0)
+
 
     send_page = SendMoneyPage(page_a)
     send_page.send_money(
@@ -75,9 +81,8 @@ def test_notif_02_mark_notification_as_read(logged_in_users):
     expect(send_page.transfer_complete).to_be_visible()
 
     notifications_page.open()
-    expect(notifications_page.notifications).to_have_count(
-        count_before + 1
-    )
+    expect(unread).to_have_count(1)
+
 
     notification = notifications_page.notifications.first
     expect(notification).to_have_attribute("data-read", "false")
@@ -99,9 +104,9 @@ def test_notif_02_mark_notification_as_read(logged_in_users):
         )
     ).not_to_be_visible()
 
-    expect(notifications_page.unread_tab).to_have_text(
-        f"Unread ({unread_before - 1})"
-    )
+    expect(unread).to_have_count(0)
+    expect(notifications_page.unread_tab).to_have_text("Unread")
+
 
     notifications_page.unread_tab.click()
 

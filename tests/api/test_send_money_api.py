@@ -20,7 +20,7 @@ def get_balance(api, currency):
 
 
 @pytest.mark.regression
-def test_api_transfer_01_updates_both_balances(api_user_a, api_user_b):
+def test_api_send_01_updates_both_balances(api_user_a, api_user_b):
     # איתור משתמש B
     response = api_user_a.post(
         "/rest/v1/rpc/lookup_recipient",
@@ -89,7 +89,7 @@ def test_api_transfer_01_updates_both_balances(api_user_a, api_user_b):
     )
 
 @pytest.mark.regression
-def test_api_transfer_02_retry_does_not_charge_twice(
+def test_api_send_02_retry_does_not_charge_twice(
     api_user_a, api_user_b
 ):
     response = api_user_a.post(
