@@ -21,7 +21,7 @@ EMPTY_CARD_MESSAGES = [
     "Cardholder name must be 2–100 characters.",
     "Card number may only contain digits.",
     "Expiry must be in MM/YY format.",
-    "CVV must be 3 digits.",
+    INVALID_CVV_MESSAGE,
 ]
 VALID_BANK_ACCOUNT = {
     "holder_name": "Test User",
@@ -31,23 +31,23 @@ VALID_BANK_ACCOUNT = {
     "account_number": "123456789",
 }
 
-INVALID_BANK_ACCOUNT_LETTERS = "ABCDE"
 SHORT_BANK_ACCOUNT_NUMBER = "123"
 LONG_BANK_ACCOUNT_NUMBER = "123456789012345678901"
+
+INVALID_BANK_ACCOUNT_LENGTH_MESSAGE = (
+    "Enter an IBAN or an account number of 4–20 digits."
+)
 
 EMPTY_BANK_ACCOUNT_MESSAGES = [
     "Account holder name must be 2–100 characters.",
     "Bank name must be 2–100 characters.",
     "Choose a supported country.",
     "Choose a supported currency.",
-    "Enter an IBAN or an account number of 4–20 digits.",
+    INVALID_BANK_ACCOUNT_LENGTH_MESSAGE,
 ]
+
 INVALID_BANK_ACCOUNT_LETTERS = "ABCD"
 INVALID_BANK_ACCOUNT_LETTERS_MESSAGE = "IBAN format is not valid."
-
-INVALID_BANK_ACCOUNT_LENGTH_MESSAGE = (
-    "Enter an IBAN or an account number of 4–20 digits."
-)
 
 INVALID_DISPLAY_NAME_MESSAGE = (
     "Display name must be at least 2 characters."

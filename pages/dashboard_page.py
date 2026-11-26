@@ -13,14 +13,16 @@ class DashboardPage(BasePage):
         self.total_balance = page.get_by_text(re.compile(r"^≈")).first
         self.menu = page.get_by_role("navigation")
         self.account_menu_button = page.get_by_role("button", name=re.compile("Account menu"))
-        self.sign_out_button = page.get_by_role("menuitem", name="Sign out")
-
+        self.sign_out_button = page.get_by_role("menuitem", name="Sign out", exact=True)
+        
     def open(self):
         super().open("/")
 
     def go_to(self, page_name: str):
-        self.menu.get_by_role("link", name=page_name).click()
+        self.menu.get_by_role(
+        "link", name=page_name
+        ).click()
 
     def sign_out(self):
         self.account_menu_button.click()
-        self.sign_out_button.press("Enter")
+        self.sign_out_button.click()
