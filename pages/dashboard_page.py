@@ -23,6 +23,9 @@ class DashboardPage(BasePage):
         "link", name=page_name
         ).click()
 
+
+
     def sign_out(self):
         self.account_menu_button.click()
-        self.sign_out_button.click()
+        # Enter instead of click: the menu sometimes opens below the screen
+        self.sign_out_button.press("Enter")
